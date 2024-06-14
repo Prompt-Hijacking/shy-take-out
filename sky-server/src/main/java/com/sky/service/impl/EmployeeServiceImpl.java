@@ -67,6 +67,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    /*
+    * 新增员工*/
     @Override
     public void save(EmployeeDTO employeeDTO) {
         System.out.println("当前线程的id" + Thread.currentThread().getId());
@@ -86,6 +88,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.insert(employee);
     }
 
+    /*
+    * 分页查询*/
     @Override
     public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
         //分页查询
@@ -95,6 +99,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> result = page.getResult();
 
         return new PageResult(total,result);
+    }
+
+    /*
+    * 启用禁用员工账号*/
+    @Override
+    public void startOrStop(Integer status, Long id) {
+//        Employee employee = new Employee();
+//        employee.setStatus(status);
+//        employee.setId(id);
+
+         Employee employee= Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+
+        employeeMapper.update(employee);
     }
 
 }
