@@ -37,7 +37,7 @@ public class DishServiceImpl implements DishService {
     /*
      * 新增菜品和对应口味*/
     @Override
-    @Transactional //事务管理
+    @Transactional //事务管理，保证要么全成功要么全失败
     public void saveWithFlavor(DishDTO dishDTO) {
 
         Dish dish = new Dish();
@@ -101,7 +101,7 @@ public class DishServiceImpl implements DishService {
     /*
     * 根据id查询菜品*/
     @Override
-    public DishVO getByWithFlavor(Long id) {
+    public DishVO getByIdWithFlavor(Long id) {
         //根据id查询菜品数据
         Dish dish = dishMapper.getById(id);
         //根据菜品id查询口味数据
